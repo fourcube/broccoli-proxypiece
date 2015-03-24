@@ -1,6 +1,6 @@
-# Broccoli Timepiece
+# Broccoli Proxypiece
 
-It's what you use to watch things, you know?
+It's what you use to watch things, you know? It also proxies requests. If you want.
 
 OK, seriously, broccoli-timepiece is a command line utlility that uses the Watcher and Builder that
 come with `broccoli` to provide rebuild semantics without running a webserver.
