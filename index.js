@@ -8,6 +8,7 @@ var rimraf   = require('rimraf');
 var helpers  = require('broccoli-kitchen-sink-helpers');
 var Watcher  = require('broccoli/lib/watcher');
 var broccoli = require('broccoli');
+var env      = require('broccoli-env').getEnv().toUpperCase();
 var argv     = require('minimist')(process.argv.slice(2));
 var Proxy    = require('./proxy');
 
@@ -36,6 +37,7 @@ function createWatcher(destDir, interval) {
   try {
     var proxyConfig = loadProxyConfig();
     proxyConfig.port = argv.port || proxyConfig.port;
+    proxyConfig.usePayloads = env === "DEVELOPMENT";
 
     proxy = new Proxy(proxyConfig);
   } catch (e) {
@@ -61,7 +63,7 @@ function createWatcher(destDir, interval) {
   });
 
   watcher.on('error', function(err) {
-    console.log(chalk.red('\n\nBuild failed.\n'));
+    console.log(chalk.red('\n\nBuild failed.\n', err));
   });
 
   if(proxy) {

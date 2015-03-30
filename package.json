@@ -19,6 +19,7 @@
   ],
   "dependencies": {
     "broccoli": "~0.13.3",
+    "broccoli-env": "0.0.1",
     "broccoli-kitchen-sink-helpers": "~0.2.5",
     "chalk": "~0.5.1",
     "findup-sync": "^0.2.1",
