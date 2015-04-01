@@ -33,11 +33,12 @@ function createWatcher(destDir, interval) {
   var watcher = new Watcher(builder, {interval: interval || 100});
   var proxy;
 
+console.log(argv);
   // We will only proxy if a Proxy.js file exists adjacent to the Brocfile.js
   try {
     var proxyConfig = loadProxyConfig();
     proxyConfig.port = argv.port || proxyConfig.port;
-    proxyConfig.usePayloads = env === "DEVELOPMENT";
+    proxyConfig.usePayloads = !argv.noProxy && env === "DEVELOPMENT";
 
     proxy = new Proxy(proxyConfig);
   } catch (e) {
