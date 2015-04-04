@@ -48,6 +48,11 @@ Proxy.prototype.listen = function (staticDir) {
     // Decide if we should use a static response
     if (usePayloads) {
       routeHandler = function(request, reply) {
+        if(route.payload == "echo") {
+          reply(request.payload);
+          return;
+        }
+
         reply(route.payload);
       }
     } // Or proxy the requests
